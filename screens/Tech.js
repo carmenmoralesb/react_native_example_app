@@ -3,11 +3,21 @@ import { services } from '../services/services'
 import React, { useEffect, useState } from 'react'
 import { NativeBaseProvider, FlatList, ScrollView, Divider, Image, Spinner } from 'native-base';
 import { View, Text, StyleSheet } from 'react-native';
+import moment from 'moment';
+import 'moment/locale/es';
+import {
+    AbrilFatface_400Regular
+} from '@expo-google-fonts/abril-fatface'
+import { useFonts } from 'expo-font';
 
 export default function Business() {
+    let [fontsLoaded] = useFonts({
+        AbrilFatface_400Regular,
+    });
+    moment.locale('es')
     const [newsData, setNewsData] = useState([])
     useEffect(() => {
-        services('tech')
+        services('technology')
             .then(data => {
                 setNewsData(data)
             })
@@ -21,7 +31,7 @@ export default function Business() {
                 <FlatList
                     data={newsData}
                     renderItem={({ item }) => (
-                        <View>
+                        <View >
                             <View style={styles.newsContainer}>
                                 <Image
                                     width={550}
@@ -36,7 +46,7 @@ export default function Business() {
                                     {item.title}
                                 </Text>
                                 <Text style={styles.date}>
-                                    {item.publishedAt}
+                                    {moment(item.publishedAt).format('LLL')}
                                 </Text>
                                 <Text style={styles.newsDescription}>
                                     {item.description}
@@ -45,7 +55,9 @@ export default function Business() {
                         </View>
 
                     )}
+                    
                     keyExtractor={(item) => item.id}
+                    
                 />
             </ScrollView>
         </NativeBaseProvider>
@@ -54,18 +66,25 @@ export default function Business() {
 
 const styles = StyleSheet.create({
     newsContainer: {
-        padding: 10
+        marginStart:10,
+        marginEnd:10,
+        padding: 8,
+        borderBottomColor: '#c6c6c6',
+        borderBottomWidth: 0.6
     },
     title: {
+        fontFamily: "AbrilFatface_400Regular",
         fontSize: 18,
-        marginTop: 10,
-        fontWeight: "600"
+        marginTop: 10
     },
     newsDescription: {
-        fontSize: 16,
+        fontSize: 14,
+        fontFamily: "Inter_400Regular",
         marginTop: 10
     },
     date: {
-        fontSize: 14
+        fontFamily: "Inter_400Regular",
+        color: '#898787',
+        fontSize: 12
     },
 });

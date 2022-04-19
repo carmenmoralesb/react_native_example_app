@@ -3,8 +3,18 @@ import { services } from '../services/services'
 import React, { useEffect, useState } from 'react'
 import { NativeBaseProvider, FlatList, ScrollView, Divider, Image, Spinner } from 'native-base';
 import { View, Text, StyleSheet } from 'react-native';
+import moment from 'moment';
+import 'moment/locale/es';
+import {
+  AbrilFatface_400Regular
+} from '@expo-google-fonts/abril-fatface'
+import { useFonts } from 'expo-font';
 
 export default function Health() {
+  let [fontsLoaded] = useFonts({
+    AbrilFatface_400Regular,
+});
+  moment.locale('es')
   const [newsData, setNewsData] = useState([])
   useEffect(() => {
     services('health')
@@ -36,7 +46,7 @@ export default function Health() {
                   {item.title}
                 </Text>
                 <Text style={styles.date}>
-                  {item.publishedAt}
+                  {moment(item.publishedAt).format('LLL')}
                 </Text>
                 <Text style={styles.newsDescription}>
                   {item.description}
@@ -54,18 +64,25 @@ export default function Health() {
 
 const styles = StyleSheet.create({
   newsContainer: {
-    padding: 10
+      marginStart:10,
+      marginEnd:10,
+      padding: 8,
+      borderBottomColor: '#c6c6c6',
+      borderBottomWidth: 0.6
   },
   title: {
-    fontSize: 18,
-    marginTop: 10,
-    fontWeight: "600"
+      fontFamily: "AbrilFatface_400Regular",
+      fontSize: 18,
+      marginTop: 10
   },
   newsDescription: {
-    fontSize: 16,
-    marginTop: 10
+      fontSize: 14,
+      fontFamily: "Inter_400Regular",
+      marginTop: 10
   },
   date: {
-    fontSize: 14
+      fontFamily: "Inter_400Regular",
+      color: '#898787',
+      fontSize: 12
   },
 });
