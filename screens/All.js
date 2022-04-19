@@ -2,7 +2,7 @@ import { services } from '../services/services'
 
 import React, { useEffect, useState, TouchableOpacity } from 'react'
 import { NativeBaseProvider, FlatList, ScrollView, Divider, Image, Spinner } from 'native-base';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Linking } from 'react-native';
 import moment from 'moment';
 import 'moment/locale/es';
 import {
@@ -12,18 +12,6 @@ import {
     Inter_400Regular
 } from '@expo-google-fonts/inter'
 import { useFonts } from 'expo-font';
-
-function DetailsScreen({ navigation }) {
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Details Screen</Text>
-            <Button
-                title="Go to Details... again"
-                onPress={() => navigation.navigate('Details')}
-            />
-        </View>
-    );
-}
 
 export default function All() {
     let [fontsLoaded] = useFonts({
@@ -51,9 +39,6 @@ export default function All() {
                     renderItem={({ item }) => (
                         <View>
                             <View style={styles.newsContainer} >
-                                <TouchableOpacity onPress={() => Linking
-                                    .openURL('https://link.com')
-                                    .catch(err => console.error('Error', err))}>
                                 <Image
                                     width={550}
                                     height={250}
@@ -63,23 +48,25 @@ export default function All() {
                                     }}
                                     alt="Alternate Text"
                                 />
-                            </TouchableOpacity>
-                            <Text style={styles.title}>
-                                {item.title}
-                            </Text>
-                            <Text style={styles.date}>
-                                {moment(item.publishedAt).format('LLL')}
-                            </Text>
-                            <Text style={styles.newsDescription}>
-                                {item.description}
-                            </Text>
-                        </View>
+
+                                <Text style={styles.title} onPress={() => Linking
+                                    .openURL(String(item.uri))
+                                    .catch(err => console.error('Error', err))}>
+                                    {item.title}
+                                </Text>
+                                <Text style={styles.date}>
+                                    {moment(item.publishedAt).format('LLL')}
+                                </Text>
+                                <Text style={styles.newsDescription}>
+                                    {item.description}
+                                </Text>
+                            </View>
                         </View>
 
                     )}
-            keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.id}
                 />
-        </ScrollView>
+            </ScrollView>
         </NativeBaseProvider >
     )
 }

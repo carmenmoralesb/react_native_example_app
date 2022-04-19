@@ -6,7 +6,9 @@ import HealthScreen from './screens/Health.js';
 import SportsScreen from './screens/Sports.js';
 import TechScreen from './screens/Tech.js';
 import { NavigationContainer } from '@react-navigation/native';
-
+import { 
+  Inter_400Regular
+} from '@expo-google-fonts/inter'
 export const Tab = createBottomTabNavigator();
 
 export default function App() {
