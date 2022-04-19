@@ -62,5 +62,8 @@ The API calls used are `https://newsapi.org/v2/top-headlines` with the parameter
 }
 ```
 ## Example of categories
-![alt text](screenshots/captura1.JPG)
-![alt text](screenshots/captura2.JPG)
+
+| Tab 1  | Tab 2 |
+| ------------- | ------------- |
+| ![alt text](screenshots/captura1.JPG)  | ![alt text](screenshots/captura2.JPG) |
+
