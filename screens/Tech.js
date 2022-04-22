@@ -10,7 +10,7 @@ import {
 } from '@expo-google-fonts/abril-fatface'
 import { useFonts } from 'expo-font';
 
-export default function Business() {
+export default function TechScreen() {
     let [fontsLoaded] = useFonts({
         AbrilFatface_400Regular,
     });

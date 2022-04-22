@@ -11,7 +11,7 @@ import {
 import { useFonts } from 'expo-font';
 
 
-export default function Business() {
+export default function BusinessScreen() {
     let [fontsLoaded] = useFonts({
         AbrilFatface_400Regular,
     });

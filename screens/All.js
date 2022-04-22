@@ -12,14 +12,16 @@ import {
     Inter_400Regular
 } from '@expo-google-fonts/inter'
 import { useFonts } from 'expo-font';
+import DetailScreen from './Detail';
+import { useNavigation } from "@react-navigation/native";
 
 export default function All() {
     let [fontsLoaded] = useFonts({
         AbrilFatface_400Regular,
         Inter_400Regular
     });
-
     moment.locale('es')
+    const navigation = useNavigation();
     const [newsData, setNewsData] = useState([])
     useEffect(() => {
         services('general')
@@ -49,13 +51,13 @@ export default function All() {
                                     alt="Alternate Text"
                                 />
 
-                                <Text style={styles.title} onPress={() => Linking
-                                    .openURL(String(item.uri))
-                                    .catch(err => console.error('Error', err))}>
+                                <Text style={styles.title} onPress={() => {
+                                    navigation.navigate('Detail', { name: 'test' });
+                                }}>
                                     {item.title}
                                 </Text>
                                 <Text style={styles.date}>
-                                    {moment(item.publishedAt).format('LLL')}
+                                    {moment(item.publishedAt).format('LLL')} | {item.source.name}
                                 </Text>
                                 <Text style={styles.newsDescription}>
                                     {item.description}

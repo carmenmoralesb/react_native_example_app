@@ -1,16 +1,14 @@
+import * as React from 'react';
+import { View, Text, SafeAreaView,StyleSheet } from 'react-native';
 import { services } from '../services/services'
-
-import React, { useEffect, useState } from 'react'
 import { NativeBaseProvider, FlatList, ScrollView, Divider, Image, Spinner } from 'native-base';
-import { View, Text, StyleSheet } from 'react-native';
 import moment from 'moment';
-import 'moment/locale/es';
 import {
-  AbrilFatface_400Regular
+    AbrilFatface_400Regular
 } from '@expo-google-fonts/abril-fatface'
 import { useFonts } from 'expo-font';
 
-export default function HealthScreen() {
+export default function DetailsScreen() {
   let [fontsLoaded] = useFonts({
     AbrilFatface_400Regular,
 });
@@ -64,8 +62,8 @@ export default function HealthScreen() {
 
 const styles = StyleSheet.create({
   newsContainer: {
-      marginStart:10,
-      marginEnd:10,
+      marginStart: 10,
+      marginEnd: 10,
       padding: 8,
       borderBottomColor: '#c6c6c6',
       borderBottomWidth: 0.6
